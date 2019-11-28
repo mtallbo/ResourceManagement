@@ -1,0 +1,55 @@
+﻿@page
+@model ITHS_DB_Lab3_Web.Pages.ResourceEntity.ResourceEntityListByIdModel
+@{
+    ViewData["Title"] = "ResourceEntityListById";
+}
+<h1>Resource list of @Model.ResourceData.Name</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Resource Id</th>
+            <th scope="col">Entity Id</th>
+            <th scope="col">Identification Number</th>
+            <th scope="col">Lost By Loan Id</th>
+            <th scope="col">Loanable</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var Resource_EntityDetails in Model.ResourceEntityLostAndLoanData)
+            {
+        <tr>
+            <td>@Resource_EntityDetails.Id</td>
+            <td>@Resource_EntityDetails.ResourceId</td>
+            <td>@Resource_EntityDetails.EntityId</td>
+            <td>@Resource_EntityDetails.IdentificationNumber</td>
+            @if (Resource_EntityDetails.LostByLoanId == 0)
+            {
+                <td>Not lost</td>
+            }
+            else
+            {
+                <td>@Resource_EntityDetails.LostByLoanId</td>
+            }
+
+            @if (Resource_EntityDetails.Loanable == "Loaned")
+            {
+                <td class="text-warning"><i class="fas fa-exclamation-circle"></i> @Resource_EntityDetails.Loanable</td>
+            }
+            else if (Resource_EntityDetails.Loanable == "Lost")
+            {
+                <td class="text-danger"><i class="fas fa-exclamation-triangle"></i> @Resource_EntityDetails.Loanable</td>
+            }
+            else
+            {
+                <td>
+                    <a asp-page="../LoanPagesAndForms/LoanEntity" asp-route-resourceentityid="@Resource_EntityDetails.Id"><i class="fas fa-plus-circle"></i> Click to loan</a>
+                </td>
+            }
+            
+            </tr>
+            }
+    </tbody>
+</table>
+

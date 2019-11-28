@@ -1,0 +1,13 @@
+﻿@using ITHS_DB_Lab3_Web
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model User
+<tr>
+    <td>@Model.FirstName</td>
+    <td>@Model.LastName</td>
+    <td>@Model.RoleId</td>
+    <td>
+        <a asp-page="./DeleteUser" asp-route-userid="@Model.Id"><i class="fas fa-trash" style="color:red"></i></a>
+    </td>
+</tr>

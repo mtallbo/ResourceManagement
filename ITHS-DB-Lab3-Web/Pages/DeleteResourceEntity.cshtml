@@ -1,0 +1,15 @@
+﻿@page
+@model ITHS_DB_Lab3_Web.Pages.DeleteResourceEntityModel
+@{
+    ViewData["Title"] = "DeleteResourceEntity";
+}
+
+<h1>Delete Resource Entity</h1>
+<div class="alert alert-danger">
+    Are you sure you want to delete @Model.ResourceEntityData.Id?
+</div>
+<form method="post">
+    <input type="hidden" asp-for="ResourceEntityData.Id" />
+    <button type="submit" value="delete" class="btn btn-danger">Yes!</button>
+    <a asp-page="Index" class="btn btn-primary">Cancel</a>
+</form>

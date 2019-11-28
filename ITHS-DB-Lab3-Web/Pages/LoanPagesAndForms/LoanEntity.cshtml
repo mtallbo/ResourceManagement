@@ -1,0 +1,39 @@
+﻿@page
+@model ITHS_DB_Lab3_Web.Pages.LoanForm.LoanEntityModel
+@{
+    ViewData["Title"] = "LoanEntity";
+}
+@Model.LoanData
+<h1>Loan for entity id: @Model.EntityId</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="resourceentityid" value="@Model.EntityId" />
+            <div class="form-group">
+                <label asp-for="LoanData.LoanerId" class="control-label">Loaner Id</label>
+                <input asp-for="LoanData.LoanerId" class="form-control" />
+                <span asp-validation-for="LoanData.LoanerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoanData.BorrowerId" class="control-label">Borrower Id</label>
+                <input asp-for="LoanData.BorrowerId" class="form-control" />
+                <span asp-validation-for="LoanData.BorrowerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Start date</label>
+                @Html.TextBoxFor(Model => Model.FormStartDate, new { @type = "date", @class = "form-control datepicker", @Value = Model.FormStartDate.ToString("yyyy-MM-dd") })
+                @Html.ValidationMessageFor(Model => Model.FormStartDate, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label class="control-label">End date</label>
+                @Html.TextBoxFor(Model => Model.FormEndDate, new { @type = "date", @class = "form-control datepicker", @Value = Model.FormEndDate.ToString("yyyy-MM-dd") })
+                @Html.ValidationMessageFor(Model => Model.FormEndDate, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

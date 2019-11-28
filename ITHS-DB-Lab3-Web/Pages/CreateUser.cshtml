@@ -1,0 +1,34 @@
+﻿@page
+@model ITHS_DB_Lab3_Web.Pages.CreateUserModel
+@{
+    ViewData["Title"] = "Create User";
+}
+@Model.UserData
+<h1>Create user</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserData.FirstName" class="control-label"></label>
+                <input asp-for="UserData.FirstName" class="form-control" />
+                <span asp-validation-for="UserData.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserData.LastName" class="control-label"></label>
+                <input asp-for="UserData.LastName" class="form-control" />
+                <span asp-validation-for="UserData.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserData.RoleId" class="control-label"></label>
+                <input asp-for="UserData.RoleId" class="form-control" />
+                <span asp-validation-for="UserData.RoleId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+﻿@page
+@model ITHS_DB_Lab3_Web.Pages.DeleteResourceModel
+@{
+    ViewData["Title"] = "DeleteResource";
+}
+
+<h2>Delete resource</h2>
+<div class="alert alert-danger">
+    Are you sure you want to delete @Model.ResourceData.Name?
+</div>
+<form method="post">
+    <input type="hidden" asp-for="ResourceData.Id" />
+    <button type="submit" value="delete" class="btn btn-danger">Yes!</button>
+    <a asp-page="Resources" class="btn btn-primary">Cancel</a>
+</form>

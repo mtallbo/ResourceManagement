@@ -1,0 +1,17 @@
+﻿@using ITHS_DB_Lab3_Web
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Resource
+<tr>
+    <td>@Model.CategoryId</td>
+    <td>@Model.Name</td>
+    <td>@Model.Description</td>
+    <td>@Model.Cost</td>
+    <td>
+        <a asp-page="./Entity/ResourceEntityListById" asp-route-resourceid="@Model.Id"><i class="fas fa-copy" style="color:dodgerblue"></i></a>
+    </td>
+    <td>
+        <a asp-page="./DeleteResource" asp-route-resourceid="@Model.Id"><i class="fas fa-trash" style="color:red"></i></a>
+    </td>
+</tr>

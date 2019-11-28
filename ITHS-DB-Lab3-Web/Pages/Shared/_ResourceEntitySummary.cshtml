@@ -1,0 +1,32 @@
+﻿@using ITHS_DB_Lab3_Web
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Resource_EntityDetails
+<tr>
+    <td>@Model.Id</td>
+    <td>@Model.ResourceId</td>
+    <td>@Model.EntityId</td>
+    <td>@Model.IdentificationNumber</td>
+    @if (Model.LostByLoanId == 0)
+    {
+        <td>Not lost</td>
+    }
+    else
+    {
+        <td>@Model.LostByLoanId</td>
+    }
+
+    @if (Model.Loanable == "Loaned")
+    {
+        <td class="bg-warning">@Model.Loanable</td>
+    }
+    else if (Model.Loanable == "Lost")
+    {
+        <td class="bg-danger">@Model.Loanable</td>
+    }
+    else
+    {
+        <td class="bg-success">@Model.Loanable</td>
+    }
+</tr>

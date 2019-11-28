@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="7651af95-74c9-4276-9451-5cf7dcf7e44c" ChangeDateTime="11/26/2019 13:16:24">
+    <Property Name="ElementName" Value="[dbo].[ResourceEntities].[Missing]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ResourceEntities]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LostBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="859460e8-7310-465a-87cc-ec937d3ded50" ChangeDateTime="11/26/2019 13:29:55">
+    <Property Name="ElementName" Value="[dbo].[ResourceEntities].[LostBy]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ResourceEntities]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Missing" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e4a6cfb3-b249-4a90-af5f-214b4947fbee" ChangeDateTime="11/26/2019 16:51:40">
+    <Property Name="ElementName" Value="[dbo].[ResourceEntities].[Missing]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ResourceEntities]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LostByLoanId" />
+  </Operation>
+</Operations>

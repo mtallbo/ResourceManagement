@@ -1,0 +1,15 @@
+﻿@page
+@model ITHS_DB_Lab3_Web.Pages.LoanPagesAndForms.ReturnLoanModel
+@{
+    ViewData["Title"] = "ReturnLoan";
+}
+
+<h2>Return loan</h2>
+<div class="alert alert-warning">
+    Are you sure you want to return loan with ID: @Model.LoanData.Id?
+</div>
+<form method="post">
+    <input type="hidden" asp-for="LoanData.Id" />
+    <button type="submit" value="delete" class="btn btn-danger">Yes!</button>
+    <a asp-page="../LoanPagesAndForms/LoanList" class="btn btn-primary">Cancel</a>
+</form>

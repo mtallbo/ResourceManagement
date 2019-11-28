@@ -1,0 +1,28 @@
+﻿@page
+@model ITHS_DB_Lab3_Web.Pages.ResourcesModel
+@{
+    ViewData["Title"] = "Resources";
+}
+
+<h1>Resource list</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Category ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Cost</th>
+            <th scope="col">Copies</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var User in Model.ResourceData)
+            {
+                <partial name="./Shared/_ResourceSummary" model="User" />
+            }
+        </tr>
+    </tbody>
+</table>

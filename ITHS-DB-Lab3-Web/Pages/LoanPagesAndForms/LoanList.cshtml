@@ -1,0 +1,30 @@
+﻿@page
+@model ITHS_DB_Lab3_Web.Pages.LoanPagesAndForms.LoanListModel
+@{
+    ViewData["Title"] = "LoanList";
+}
+
+<h1>Loan List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Loan ID</th>
+            <th scope="col">Borrower ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Return Date</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var LoanDetails in Model.LoanData)
+            {
+                <partial name="../Shared/_LoanSummary" model="LoanDetails" />
+            }
+        </tr>
+    </tbody>
+</table>

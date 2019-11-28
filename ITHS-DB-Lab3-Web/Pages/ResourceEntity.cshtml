@@ -1,0 +1,40 @@
+﻿@page
+@model ITHS_DB_Lab3_Web.Pages.ResourceEntityModel
+@{
+    ViewData["Title"] = "ResourceEntity";
+}
+
+<h1>Resource Entity</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Resource Id</th>
+            <th scope="col">Entity Id</th>
+            <th scope="col">Identification Number</th>
+            <th scope="col">Lost By Loan Id</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var ResourceEntity in Model.EntityData)
+            {
+            <tr>
+                <td>@ResourceEntity.Id</td>
+                <td>@ResourceEntity.ResourceId</td>
+                <td>@ResourceEntity.EntityId</td>
+                <td>@ResourceEntity.IdentificationNumber</td>
+                @if (ResourceEntity.LostByLoanId == 0)
+                {
+                    <td>Not lost</td>
+                }
+                else
+                {
+                    <td>@ResourceEntity.LostByLoanId</td>
+                }
+            </tr>
+        }
+            </tr>
+        </tbody>
+</table>
