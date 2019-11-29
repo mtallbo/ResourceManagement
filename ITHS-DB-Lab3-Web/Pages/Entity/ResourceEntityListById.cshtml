@@ -41,13 +41,12 @@
             {
                 <td class="text-danger"><i class="fas fa-exclamation-triangle"></i> @Resource_EntityDetails.Loanable</td>
             }
-            else
+            else if(Resource_EntityDetails.Loanable == "Available")
             {
                 <td>
                     <a asp-page="../LoanPagesAndForms/LoanEntity" asp-route-resourceentityid="@Resource_EntityDetails.Id"><i class="fas fa-plus-circle"></i> Click to loan</a>
                 </td>
             }
-            
             </tr>
             }
     </tbody>

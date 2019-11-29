@@ -10,7 +10,7 @@ namespace ITHS_DB_Lab3_Web
     public class SqlDatabase
     {
      
-        private static string db_adress = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ITHS-DB-Labb3;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private static string db_adress = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Labb3_Dev;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         
 
@@ -77,7 +77,7 @@ namespace ITHS_DB_Lab3_Web
         }
         public static User FindUser(int Userid)
         {
-            
+           
             using (SqlConnection con = new SqlConnection(db_adress))
             {
                 con.Open();

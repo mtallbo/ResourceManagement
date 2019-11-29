@@ -11,7 +11,6 @@ namespace ITHS_DB_Lab3_Web.Pages.ResourceEntity
 {
     public class ResourceEntityListByIdModel : PageModel
     {
-        public IEnumerable<Resource_Entity> ResourceEntityData;
         public Resource ResourceData;
         public IEnumerable<Resource_EntityDetails> ResourceEntityLostAndLoanData;
 
@@ -20,7 +19,6 @@ namespace ITHS_DB_Lab3_Web.Pages.ResourceEntity
         {
             ResourceEntityLostAndLoanData = SqlDatabase.GetLostOrLoanedResourceEntities(resourceid);
             ResourceData = SqlDatabase.FindResource(resourceid);
-            ResourceEntityData = SqlDatabase.GetAllResourceEntitiesByResource(resourceid);
         }
     }
 }
