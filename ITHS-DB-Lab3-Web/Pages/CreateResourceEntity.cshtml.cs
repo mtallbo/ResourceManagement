@@ -38,7 +38,7 @@ namespace ITHS_DB_Lab3_Web.Pages
             }
             catch (SqlException)
             {
-                //Add error message here
+                TempData["Message"] = "Error creating entity";
                 return Page();
             }
             return RedirectToPage("./Resources");

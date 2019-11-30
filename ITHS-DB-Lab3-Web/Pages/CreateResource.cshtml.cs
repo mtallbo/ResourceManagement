@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace ITHS_DB_Lab3_Web.Pages
@@ -33,8 +34,14 @@ namespace ITHS_DB_Lab3_Web.Pages
                 return Page();
                 
             }
-            
-            SqlDatabase.AddResource(CategoryId, ResourceData.Name, ResourceData.Description, ResourceData.Cost);
+            try
+            {
+                SqlDatabase.AddResource(CategoryId, ResourceData.Name, ResourceData.Description, ResourceData.Cost);
+            } catch (SqlException)
+            {
+                TempData["Message"] = "Error during creation of resource";
+                return Page();
+            }
             return RedirectToPage("./Resources");
         }
     }

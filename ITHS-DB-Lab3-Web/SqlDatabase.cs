@@ -135,8 +135,7 @@ namespace ITHS_DB_Lab3_Web
             using (SqlConnection con = new SqlConnection(db_adress))
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("insert into [Resources] (CategoryId, [Name], [Description], Cost)" +
-                    " values (@CategoryId, @Name, @Description, @Cost)", con);
+                SqlCommand cmd = new SqlCommand("if not exists (select  1 from Resources where Resources.[Name] = @Name) begin insert [Resources] (CategoryId, [Name], [Description], Cost) values (@CategoryId, @Name, @Description, @Cost) end;", con);
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@CategoryId", CategoryId);
                 cmd.Parameters.AddWithValue("@Name", Name);

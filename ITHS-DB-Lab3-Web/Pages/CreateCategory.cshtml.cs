@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,16 +26,15 @@ namespace ITHS_DB_Lab3_Web.Pages
             {
                 return Page();
             }
-            SqlDatabase.AddCategory(Category.Category, Category.Identification);
-            //try
-            //{
-            //    SqlDatabase.AddCategory(Category.Category, Category.Identification);
-            //}
-            //catch (SqlException)
-            //{
-            //    //Add error message here
-            //    return Page();
-            //}
+            try
+            {
+                SqlDatabase.AddCategory(Category.Category, Category.Identification);
+            }
+            catch (SqlException)
+            {
+                TempData["Message"] = "Cannot create your category, maybe your are missing fields or it already exists";
+                return Page();
+            }
             return RedirectToPage("./Resources");
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,14 @@ namespace ITHS_DB_Lab3_Web.Pages
             {
                 return Page();
             }
-            SqlDatabase.AddUser(UserData.FirstName, UserData.LastName, RoleId);
+            try
+            {
+                SqlDatabase.AddUser(UserData.FirstName, UserData.LastName, RoleId);
+            } catch (SqlException)
+            {
+                TempData["Message"] = "Error creating user";
+                return Page();
+            }
             return RedirectToPage("./Users");
         }
     }
