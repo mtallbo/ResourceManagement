@@ -27,6 +27,10 @@ begin try
 		begin
             print 'Item is missing'
         end
+	else if (@loanerId = @borrowerId)
+		begin
+			print 'You cannot loan from yourself'
+		end
 	else
 		insert into
 			[dbo].[Loans]
