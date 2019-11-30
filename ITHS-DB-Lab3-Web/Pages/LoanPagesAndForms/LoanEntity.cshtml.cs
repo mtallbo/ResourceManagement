@@ -15,17 +15,23 @@ namespace ITHS_DB_Lab3_Web.Pages.LoanForm
 
         Resource_Entity ResourceData { get; set; }
         public int EntityId { get; set; }
-
+        [BindProperty]
+        public IEnumerable<User> UserData { get; set; }
         [BindProperty]
         public DateTime FormStartDate { get; set; }
-
         [BindProperty]
         public DateTime FormEndDate { get; set; }
+        [BindProperty]
+        public int LoanderId { get; set; }
+        [BindProperty]
+        public int BorrowerId { get; set; }
 
         public void OnGet(int resourceentityid)
         {
             EntityId = resourceentityid;
             ResourceData = SqlDatabase.FindResourceEntity(resourceentityid);
+            UserData = SqlDatabase.GetAllUsers();
+            
         }
 
         public IActionResult OnPost(int resourceentityid)
@@ -34,7 +40,7 @@ namespace ITHS_DB_Lab3_Web.Pages.LoanForm
             {
                 return Page();
             }
-            SqlDatabase.AddLoanEntity(LoanData.LoanerId, LoanData.BorrowerId, resourceentityid, FormStartDate.ToString("yyyy-MM-dd"), FormEndDate.ToString("yyyy-MM-dd"));
+            SqlDatabase.AddLoanEntity(LoanderId, BorrowerId, resourceentityid, FormStartDate.ToString("yyyy-MM-dd"), FormEndDate.ToString("yyyy-MM-dd"));
             return RedirectToPage("../Resources");
         }
     }

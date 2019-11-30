@@ -15,6 +15,7 @@ namespace ITHS_DB_Lab3_Web.Pages
         [BindProperty]
         public IEnumerable<Categories> CategoryData { get; set; }
         
+        [BindProperty]
         public int CategoryId { get; set; }
 
         public void OnGet()
@@ -23,7 +24,7 @@ namespace ITHS_DB_Lab3_Web.Pages
         }
 
 
-        public IActionResult OnPost(int categoryId)
+        public IActionResult OnPost()
         {
             
 
@@ -33,7 +34,7 @@ namespace ITHS_DB_Lab3_Web.Pages
                 
             }
             
-            SqlDatabase.AddResource(categoryId, ResourceData.Name, ResourceData.Description, ResourceData.Cost);
+            SqlDatabase.AddResource(CategoryId, ResourceData.Name, ResourceData.Description, ResourceData.Cost);
             return RedirectToPage("./Resources");
         }
     }

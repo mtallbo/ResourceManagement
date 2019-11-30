@@ -22,8 +22,7 @@
                 <span asp-validation-for="UserData.LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UserData.RoleId" class="control-label"></label>
-                <input asp-for="UserData.RoleId" class="form-control" />
+                @Html.DropDownListFor(model => model.RoleId, new SelectList(Model.RoleData, "Id", "Name"), "Select")
                 <span asp-validation-for="UserData.RoleId" class="text-danger"></span>
             </div>
             <div class="form-group">

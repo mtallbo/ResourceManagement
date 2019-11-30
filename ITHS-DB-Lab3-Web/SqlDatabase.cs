@@ -24,23 +24,25 @@ namespace ITHS_DB_Lab3_Web
         //User queries
         public static IEnumerable<User> GetAllUsers()
         {
-            List<User> userlist = new List<User>();
+            List<UserDetails> userlist = new List<UserDetails>();
             using (SqlConnection conn = new SqlConnection(db_adress))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("select * from [User]", conn))
+                using (SqlCommand cmd = new SqlCommand("select US.Id, US.FirstName, US.LastName, US.RoleId, RO.[Name] from [User] US inner join [Role] RO on US.RoleId = RO.Id", conn))
                 {
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            userlist.Add(new User()
+                            userlist.Add(new UserDetails()
                             {
                                 Id = (int)reader["Id"],
                                 FirstName = reader["FirstName"].ToString(),
                                 LastName = reader["LastName"].ToString(),
-                                RoleId = (int)reader["RoleId"]
-                            });
+                                RoleId = (int)reader["RoleId"],
+                                Role = reader["Name"].ToString(),
+                                FullName = reader["FirstName"].ToString() + " " + reader["LastName"].ToString()
+                        });
                         }
                     }
                     conn.Close();
@@ -94,6 +96,7 @@ namespace ITHS_DB_Lab3_Web
                     usr.FirstName = rdr["FirstName"].ToString();
                     usr.LastName = rdr["LastName"].ToString();
                     usr.RoleId = (int)rdr["RoleId"];
+                    usr.FullName = rdr["FirstName"].ToString() + rdr["LastName"].ToString();
                 }
                 return usr;
             }
@@ -213,8 +216,12 @@ namespace ITHS_DB_Lab3_Web
             {
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("insert into [ResourceEntities] (ResourceId, EntityId, IdentificationNumber)" +
-                    " values (@resourceId, @entityId, @identificationNumber)", con);
+                //SqlCommand cmd = new SqlCommand("insert into [ResourceEntities] (ResourceId, EntityId, IdentificationNumber)" +
+                //    " values (@resourceId, @entityId, @identificationNumber) where not exists (select * from [ResourceEntities] where entityId = @entityId and resourceid = @resourceid", con);
+
+                SqlCommand cmd = new SqlCommand("if not exists (select  1 from ResourceEntities where EntityId = @entityId and ResourceId = @resourceid) " +
+                    "begin insert[ResourceEntities] (ResourceId, EntityId, IdentificationNumber) values(@resourceId, @entityId, @identificationNumber)  end;", con);
+
                 cmd.CommandType = CommandType.Text;
                 cmd.Parameters.AddWithValue("@resourceId", ResourceId);
                 cmd.Parameters.AddWithValue("@entityId", EntityId);
@@ -295,7 +302,6 @@ namespace ITHS_DB_Lab3_Web
         {
             using (SqlConnection conn = new SqlConnection(db_adress))
             {
-                SqlDataAdapter da = new SqlDataAdapter();
                 using (SqlCommand cmd = new SqlCommand("spCreateLoan", conn)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -421,7 +427,7 @@ namespace ITHS_DB_Lab3_Web
             return entitylist;
         }
 
-        //Get categories
+        //Categories
         public static List<Categories> GetAllCategories()
         {
             List<Categories> categorieslist = new List<Categories>();
@@ -443,10 +449,48 @@ namespace ITHS_DB_Lab3_Web
                             });
                         }
                     }
-                    conn.Close();
                 }
             }
             return categorieslist;
+        }
+        public static void AddCategory(string category, string identification)
+        {
+            using (SqlConnection conn = new SqlConnection(db_adress))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("if not exists (select  1 from Categories where Category = @category) begin insert[Categories]" +
+                    "(Category, Identification) values(@category, @identification) end;", conn);
+                cmd.Parameters.AddWithValue("@category", category);
+                cmd.Parameters.AddWithValue("@identification", identification);
+
+                cmd.ExecuteReader();
+            }
+        }
+
+        //Roles roles
+        public static List<Roles> GetAllRoles()
+        {
+            List<Roles> rolelist = new List<Roles>();
+            using (SqlConnection conn = new SqlConnection(db_adress))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("select * from Role", conn)) 
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            rolelist.Add(new Roles()
+                            {
+                                Id = (int)reader["id"],
+                                Name = reader["Name"].ToString(),
+                                PermissionLevel = (int)reader["PermissionLevel"]
+                            });
+                        }
+                    }
+                }
+            }
+            return rolelist;
         }
     }
 }

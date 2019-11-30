@@ -12,13 +12,13 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" name="resourceentityid" value="@Model.EntityId" />
             <div class="form-group">
-                <label asp-for="LoanData.LoanerId" class="control-label">Loaner Id</label>
-                <input asp-for="LoanData.LoanerId" class="form-control" />
+                <label>Loaner</label>
+                @Html.DropDownListFor(model => model.LoanderId, new SelectList(Model.UserData, "Id", "FullName"), "Select", new { @class = "form-control"})
                 <span asp-validation-for="LoanData.LoanerId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LoanData.BorrowerId" class="control-label">Borrower Id</label>
-                <input asp-for="LoanData.BorrowerId" class="form-control" />
+                <label>Borrower</label>
+                @Html.DropDownListFor(model => model.BorrowerId, new SelectList(Model.UserData, "Id", "FullName"), "Select", new { @class = "form-control"})
                 <span asp-validation-for="LoanData.BorrowerId" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -27,7 +27,8 @@ namespace ITHS_DB_Lab3_Web.Pages
             try
             {
                 SqlDatabase.RemoveUser(UserData.Id);
-            } catch (SqlException)
+            }
+            catch (SqlException)
             {
                 return RedirectToPage("./Users");
             }

@@ -11,5 +11,6 @@ namespace ITHS_DB_Lab3_Web
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int RoleId { get; set; }
+        public string FullName { get; set; }
     }
 }

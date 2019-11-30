@@ -19,9 +19,9 @@
     </thead>
     <tbody>
         <tr>
-            @foreach (var User in Model.userData)
+            @foreach (var UserDetails in Model.userData)
             {
-                <partial name="./Shared/_UserSummary" model="User" />
+                <partial name="./Shared/_UserSummary" model="UserDetails" />
             }
         </tr>
     </tbody>

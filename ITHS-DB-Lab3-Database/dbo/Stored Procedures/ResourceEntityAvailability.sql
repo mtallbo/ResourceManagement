@@ -12,5 +12,5 @@ left join
 on
 	RE.Id = LO.ResourceEntityId
 where
-	RE.ResourceId = @ResourceId
+	RE.ResourceId = @ResourceId and LO.ReturnDate is null
 go

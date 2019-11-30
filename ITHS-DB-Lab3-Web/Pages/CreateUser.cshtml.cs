@@ -13,10 +13,15 @@ namespace ITHS_DB_Lab3_Web.Pages
         [BindProperty]
         public User UserData { get; set; }
 
+        [BindProperty]
+        public IEnumerable<Roles> RoleData { get; set; }
+
+        [BindProperty]
+        public int RoleId { get; set; }
 
         public void OnGet()
         {
-
+            RoleData = SqlDatabase.GetAllRoles();
         }
 
         public IActionResult OnPost()
@@ -25,7 +30,7 @@ namespace ITHS_DB_Lab3_Web.Pages
             {
                 return Page();
             }
-            SqlDatabase.AddUser(UserData.FirstName, UserData.LastName, UserData.RoleId);
+            SqlDatabase.AddUser(UserData.FirstName, UserData.LastName, RoleId);
             return RedirectToPage("./Users");
         }
     }
