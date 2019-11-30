@@ -6,7 +6,7 @@
 
 <h1>Create Resource Entity</h1>
 
-@ViewData["Error"]
+
 
 <hr />
 <div class="row">
@@ -14,14 +14,13 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <!-- Add resource name as a dropdown -->
+                @Html.DropDownListFor(model => model.ResourceId, new SelectList(Model.ResourceData, "Id", "Name"), "Select")
+            </div>
+            <div class="form-group">
                 <label asp-for="ResourceEntityData.EntityId" class="control-label">Entity ID</label>
                 <input asp-for="ResourceEntityData.EntityId" class="form-control" />
                 <span asp-validation-for="ResourceEntityData.EntityId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ResourceEntityData.ResourceId" class="control-label"></label>
-                <input asp-for="ResourceEntityData.ResourceId" class="form-control" />
-                <span asp-validation-for="ResourceEntityData.Id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ResourceEntityData.IdentificationNumber" class="control-label">Identification Number</label>

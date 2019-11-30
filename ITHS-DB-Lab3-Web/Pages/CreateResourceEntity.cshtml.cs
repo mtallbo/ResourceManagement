@@ -15,9 +15,15 @@ namespace ITHS_DB_Lab3_Web.Pages
         [BindProperty]
         public Resource_Entity ResourceEntityData { get; set; }
 
+        [BindProperty]
+        public int ResourceId { get; set; }
+
+        [BindProperty]
+        public IEnumerable<Resource> ResourceData { get; set; } 
+
         public void OnGet()
         {
-            
+            ResourceData = SqlDatabase.GetAllResources();
         }
 
         public IActionResult OnPost()
@@ -28,7 +34,7 @@ namespace ITHS_DB_Lab3_Web.Pages
             }
             try
             {
-                SqlDatabase.AddResourceEntity(ResourceEntityData.ResourceId, ResourceEntityData.EntityId, ResourceEntityData.IdentificationNumber);
+                SqlDatabase.AddResourceEntity(ResourceId, ResourceEntityData.EntityId, ResourceEntityData.IdentificationNumber);
             }
             catch (SqlException)
             {

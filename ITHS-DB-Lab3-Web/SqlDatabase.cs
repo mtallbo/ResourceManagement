@@ -10,7 +10,7 @@ namespace ITHS_DB_Lab3_Web
     public class SqlDatabase
     {
      
-        private static string db_adress = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Labb3_Dev;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private static string db_adress = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ITHS-DB-Labb3;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         
 
@@ -358,7 +358,6 @@ namespace ITHS_DB_Lab3_Web
             }
         }
 
-
         //Combos
         public static IEnumerable<Resource_Entity> GetAllResourceEntitiesByResource(int ResourceId)
         {
@@ -422,5 +421,32 @@ namespace ITHS_DB_Lab3_Web
             return entitylist;
         }
 
+        //Get categories
+        public static List<Categories> GetAllCategories()
+        {
+            List<Categories> categorieslist = new List<Categories>();
+
+            using (SqlConnection conn = new SqlConnection(db_adress))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("select * from Categories", conn))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            categorieslist.Add(new Categories()
+                            {
+                                Id = (int)reader["Id"],
+                                Category = reader["Category"].ToString(),
+                                Identification = reader["Identification"].ToString()
+                            });
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+            return categorieslist;
+        }
     }
 }
