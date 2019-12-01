@@ -182,25 +182,26 @@ namespace ITHS_DB_Lab3_Web
         }   
 
         //Resource entity queries
-        public static IEnumerable<Resource_Entity> GetAllResourceEntity()
+        public static IEnumerable<Resource_EntityDetails> GetAllResourceEntity()
         {
-            List<Resource_Entity> entitylist = new List<Resource_Entity>();
+            List<Resource_EntityDetails> entitylist = new List<Resource_EntityDetails>();
             using (SqlConnection conn = new SqlConnection(db_adress))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("select * from [ResourceEntities]", conn))
+                using (SqlCommand cmd = new SqlCommand("select RE.*, RS.[Name] as CategoryName from [ResourceEntities] RE inner join Resources RS on RE.ResourceId = RS.Id", conn))
                 {
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            entitylist.Add(new Resource_Entity()
+                            entitylist.Add(new Resource_EntityDetails()
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
                                 ResourceId = (int)reader["ResourceId"],
                                 EntityId = (int)reader["EntityId"],
                                 IdentificationNumber = reader["IdentificationNumber"].ToString(),
-                                LostByLoanId = Convert.IsDBNull(reader["LostByLoanId"]) ? 0 : (int)reader["LostByLoanId"]
+                                LostByLoanId = Convert.IsDBNull(reader["LostByLoanId"]) ? 0 : (int)reader["LostByLoanId"],
+                                CategoryName = reader["CategoryName"].ToString()
                             });
                         }
                     }
@@ -424,6 +425,34 @@ namespace ITHS_DB_Lab3_Web
                 }
             }
             return entitylist;
+        }
+        public static IEnumerable<ResourceDetails> GetAllResourceWithCategoryName()
+        {
+            List<ResourceDetails> resourceList = new List<ResourceDetails>();
+            using (SqlConnection conn = new SqlConnection(db_adress))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("select RO.*, CG.Category as CategoryName from [Resources] RO left join Categories CG on RO.CategoryId = CG.Id", conn))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            resourceList.Add(new ResourceDetails()
+                            {
+                                Id = (int)reader["Id"],
+                                CategoryId = (int)reader["CategoryId"],
+                                Name = reader["Name"].ToString(),
+                                Description = reader["Description"].ToString(),
+                                Cost = (int)reader["Cost"],
+                                CategoryName = reader["CategoryName"].ToString()
+                            });
+                        }
+                    }
+                    conn.Close();
+                }
+            }
+            return resourceList;
         }
 
         //Categories

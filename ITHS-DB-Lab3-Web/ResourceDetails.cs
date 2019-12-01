@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace ITHS_DB_Lab3_Web
 {
-    public class Resource_EntityDetails : Resource_Entity
+    public class ResourceDetails : Resource
     {
-        public string Loanable { get; set; }
         public string CategoryName { get; set; }
     }
 }

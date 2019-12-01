@@ -14,7 +14,7 @@ namespace ITHS_DB_Lab3_Web.Pages
     public class ResourceEntityModel : PageModel
     {
         
-        public IEnumerable<Resource_Entity> EntityData;
+        public IEnumerable<Resource_EntityDetails> EntityData;
 
         
         public void OnGet()

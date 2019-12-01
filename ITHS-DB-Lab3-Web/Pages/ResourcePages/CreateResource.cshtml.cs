@@ -1,0 +1,48 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+
+namespace ITHS_DB_Lab3_Web.Pages
+{
+    public class Create_Resource : PageModel
+    {
+        [BindProperty]
+        public Resource ResourceData { get; set; }
+        
+        [BindProperty]
+        public IEnumerable<Categories> CategoryData { get; set; }
+        
+        [BindProperty]
+        public int CategoryId { get; set; }
+
+        public void OnGet()
+        {
+            CategoryData = SqlDatabase.GetAllCategories();
+        }
+
+
+        public IActionResult OnPost()
+        {
+            
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+                
+            }
+            try
+            {
+                SqlDatabase.AddResource(CategoryId, ResourceData.Name, ResourceData.Description, ResourceData.Cost);
+            } catch (SqlException)
+            {
+                TempData["Message"] = "Error during creation of resource";
+                return Page();
+            }
+            return RedirectToPage("./Resources");
+        }
+    }
+}

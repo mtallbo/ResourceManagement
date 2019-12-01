@@ -7,16 +7,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ITHS_DB_Lab3_Web.Pages
 {
-    public class Resources_Model : PageModel
+    public class ResourcesModel : PageModel
     {
-        public IEnumerable<Resource> ResourceData { get; set; }
-
-        public IEnumerable<ResourceDetails> ResourceDetailsData { get; set; }
+        public IEnumerable<Resource> ResourceData;
 
         public void OnGet()
         {
             ResourceData = SqlDatabase.GetAllResources();
-            ResourceDetailsData = SqlDatabase.GetAllResourceWithCategoryName(); 
         }
     }
 }

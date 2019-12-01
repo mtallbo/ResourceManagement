@@ -19,23 +19,23 @@
     </thead>
     <tbody>
         <tr>
-            @foreach (var ResourceEntity in Model.EntityData)
+            @foreach (var Resource_EntityDetails in Model.EntityData)
             {
             <tr>
-                <td>@ResourceEntity.Id</td>
-                <td>@ResourceEntity.ResourceId</td>
-                <td>@ResourceEntity.EntityId</td>
-                <td>@ResourceEntity.IdentificationNumber</td>
-                @if (ResourceEntity.LostByLoanId == 0)
+                <td>@Resource_EntityDetails.Id</td>
+                <td>@Resource_EntityDetails.CategoryName</td>
+                <td>@Resource_EntityDetails.EntityId</td>
+                <td>@Resource_EntityDetails.IdentificationNumber</td>
+                @if (Resource_EntityDetails.LostByLoanId == 0)
                 {
                     <td>Not lost</td>
                 }
                 else
                 {
-                    <td>@ResourceEntity.LostByLoanId</td>
+                    <td>@Resource_EntityDetails.LostByLoanId</td>
                 }
                 <td>
-                    <a asp-page="/DeleteResourceEntity" asp-route-resourceentityid="@ResourceEntity.Id"><i class="fas fa-trash" style="color:red"></i></a>
+                    <a asp-page="/DeleteResourceEntity" asp-route-resourceentityid="@Resource_EntityDetails.Id"><i class="fas fa-trash" style="color:red"></i></a>
                 </td>
             </tr>
         }

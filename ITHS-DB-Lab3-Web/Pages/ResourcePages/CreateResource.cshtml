@@ -1,0 +1,39 @@
+﻿@page
+@model ITHS_DB_Lab3_Web.Pages.CreateResource
+@{
+    ViewData["Title"] = "Add Resource";
+}
+
+
+<h1>Add resource</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+             @Html.DropDownListFor(model => model.CategoryId, new SelectList(Model.CategoryData, "Id", "Category"), "Select")
+        </div>
+        <div class="form-group">
+            <label asp-for="ResourceData.Name" class="control-label"></label>
+            <input asp-for="ResourceData.Name" class="form-control" />
+            <span asp-validation-for="ResourceData.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ResourceData.Description" class="control-label"></label>
+            <input asp-for="ResourceData.Description" class="form-control" />
+            <span asp-validation-for="ResourceData.Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ResourceData.Cost" class="control-label"></label>
+            <input asp-for="ResourceData.Cost" class="form-control" />
+            <span asp-validation-for="ResourceData.Cost" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+        <span class="alert-warning">@TempData["Message"]</span>
+        </form>
+    </div>
+</div>

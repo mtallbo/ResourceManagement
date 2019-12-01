@@ -1,5 +1,5 @@
 ﻿@page
-@model ITHS_DB_Lab3_Web.Pages.Resources_Model
+@model ITHS_DB_Lab3_Web.Pages.ResourcesModel
 @{
     ViewData["Title"] = "Resources";
 }
@@ -19,9 +19,9 @@
     </thead>
     <tbody>
         <tr>
-            @foreach (var ResourceDetails in Model.ResourceDetailsData)
+            @foreach (var User in Model.ResourceData)
             {
-                <partial name="./Shared/_ResourceSummary" model="ResourceDetails" />
+                <partial name="./Shared/_ResourceSummary" model="User" />
             }
         </tr>
     </tbody>
