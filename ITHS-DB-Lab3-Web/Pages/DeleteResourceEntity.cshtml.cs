@@ -13,8 +13,12 @@ namespace ITHS_DB_Lab3_Web.Pages
         [BindProperty]
         public Resource_Entity ResourceEntityData { get; set; }
 
+        [BindProperty]
+        public int ResourceEntityId { get; set; }
+
         public void OnGet(int resourceentityid)
         {
+            ResourceEntityId = resourceentityid;
             ResourceEntityData = SqlDatabase.FindResourceEntity(resourceentityid);
         }
 
@@ -22,10 +26,11 @@ namespace ITHS_DB_Lab3_Web.Pages
         {
             try
             {
-                SqlDatabase.RemoveResourceEntity(ResourceEntityData.Id);
+                SqlDatabase.RemoveResourceEntity(ResourceEntityId);
             } catch (SqlException)
             {
-                return RedirectToPage("./ResourceEntity");
+                TempData["Message"] = "Error deleting entity";
+                return Page();
             }
             return RedirectToPage("./ResourceEntity");
         }

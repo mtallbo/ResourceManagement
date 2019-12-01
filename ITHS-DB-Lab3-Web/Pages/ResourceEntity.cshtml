@@ -14,6 +14,7 @@
             <th scope="col">Entity Id</th>
             <th scope="col">Identification Number</th>
             <th scope="col">Lost By Loan Id</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -33,6 +34,9 @@
                 {
                     <td>@ResourceEntity.LostByLoanId</td>
                 }
+                <td>
+                    <a asp-page="/DeleteResourceEntity" asp-route-resourceentityid="@ResourceEntity.Id"><i class="fas fa-trash" style="color:red"></i></a>
+                </td>
             </tr>
         }
             </tr>
