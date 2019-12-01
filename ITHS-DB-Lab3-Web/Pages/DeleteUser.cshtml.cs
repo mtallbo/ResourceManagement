@@ -30,7 +30,7 @@ namespace ITHS_DB_Lab3_Web.Pages
             }
             catch (SqlException)
             {
-                return RedirectToPage("./Users");
+                return RedirectToPage("./Error");
             }
             return RedirectToPage("./Users");
         }

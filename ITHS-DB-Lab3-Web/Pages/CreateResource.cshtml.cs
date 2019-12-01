@@ -39,8 +39,7 @@ namespace ITHS_DB_Lab3_Web.Pages
                 SqlDatabase.AddResource(CategoryId, ResourceData.Name, ResourceData.Description, ResourceData.Cost);
             } catch (SqlException)
             {
-                TempData["Message"] = "Error during creation of resource";
-                return Page();
+                return RedirectToPage("./Error");
             }
             return RedirectToPage("./Resources");
         }

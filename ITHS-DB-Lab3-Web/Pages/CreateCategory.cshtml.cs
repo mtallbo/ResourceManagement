@@ -32,8 +32,7 @@ namespace ITHS_DB_Lab3_Web.Pages
             }
             catch (SqlException)
             {
-                TempData["Message"] = "Cannot create your category, maybe your are missing fields or it already exists";
-                return Page();
+                return RedirectToPage("./Error");
             }
             return RedirectToPage("./Resources");
         }

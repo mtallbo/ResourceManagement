@@ -29,8 +29,7 @@ namespace ITHS_DB_Lab3_Web.Pages
                 SqlDatabase.RemoveResourceEntity(ResourceEntityId);
             } catch (SqlException)
             {
-                TempData["Message"] = "Error deleting entity";
-                return Page();
+                return RedirectToPage("./Error");
             }
             return RedirectToPage("./ResourceEntity");
         }

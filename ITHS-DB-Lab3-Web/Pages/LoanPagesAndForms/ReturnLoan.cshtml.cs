@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,14 @@ namespace ITHS_DB_Lab3_Web.Pages.LoanPagesAndForms
 
         public IActionResult OnPost()
         {
-            SqlDatabase.ReturnLoan(LoanData.Id);
+            try
+            {
+                SqlDatabase.ReturnLoan(LoanData.Id);
+            }
+            catch (SqlException)
+            {
+                return RedirectToPage("./Error");
+            }
 
             return RedirectToPage("./LoanList");
         }

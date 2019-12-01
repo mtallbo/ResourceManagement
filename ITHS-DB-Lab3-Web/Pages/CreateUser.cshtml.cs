@@ -36,8 +36,7 @@ namespace ITHS_DB_Lab3_Web.Pages
                 SqlDatabase.AddUser(UserData.FirstName, UserData.LastName, RoleId);
             } catch (SqlException)
             {
-                TempData["Message"] = "Error creating user";
-                return Page();
+                return RedirectToPage("./Error");
             }
             return RedirectToPage("./Users");
         }

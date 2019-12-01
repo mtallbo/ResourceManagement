@@ -25,7 +25,7 @@ namespace ITHS_DB_Lab3_Web.Pages
                 SqlDatabase.RemoveResource(ResourceData.Id);
             } catch (SqlException)
             {
-                return RedirectToPage("./Resources");
+                return RedirectToPage("./Error");
             }
             return RedirectToPage("./Resources");
         }
