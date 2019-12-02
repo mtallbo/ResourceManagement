@@ -8,6 +8,7 @@ namespace ITHS_DB_Lab3_Web
     public class Resource_EntityDetails : Resource_Entity
     {
         public string Loanable { get; set; }
-        public string CategoryName { get; set; }
+        public string ResourceName { get; set; }
+        public string LostByName { get; set; }
     }
 }

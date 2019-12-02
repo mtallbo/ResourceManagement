@@ -7,10 +7,7 @@ namespace ITHS_DB_Lab3_Web
 {
     public class LoanDetails : Loan
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int DaysLate { get; set; }
-        public string ResourceName { get; set; }
-        public int TotalSum { get; set; }
+        public string FullNameBorrower { get; set; } 
+        public string FullNameLoaner { get; set; }
     }
 }

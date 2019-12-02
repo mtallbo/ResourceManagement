@@ -30,7 +30,7 @@ namespace ITHS_DB_Lab3_Web.Pages.LoanForm
         [BindProperty]
         [Required]
         public int BorrowerId { get; set; }
-
+        
         public void OnGet(int resourceentityid)
         {
             EntityId = resourceentityid;

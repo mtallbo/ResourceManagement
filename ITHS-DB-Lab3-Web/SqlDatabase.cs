@@ -188,7 +188,9 @@ namespace ITHS_DB_Lab3_Web
             using (SqlConnection conn = new SqlConnection(db_adress))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("select RE.*, RS.[Name] as CategoryName from [ResourceEntities] RE inner join Resources RS on RE.ResourceId = RS.Id", conn))
+                //using (SqlCommand cmd = new SqlCommand("select RE.*, RS.[Name] as ResourceName from [ResourceEntities] RE inner join Resources RS on RE.ResourceId = RS.Id", conn))
+                using (SqlCommand cmd = new SqlCommand("select RE.*, RS.[Name] as ResourceName, US.FirstName + ' ' + US.LastName as LostByName from [ResourceEntities] RE inner join Resources RS on RE.ResourceId = RS.Id left join [User] US on RE.LostByLoanId = US.Id", conn))
+
                 {
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -201,7 +203,8 @@ namespace ITHS_DB_Lab3_Web
                                 EntityId = (int)reader["EntityId"],
                                 IdentificationNumber = reader["IdentificationNumber"].ToString(),
                                 LostByLoanId = Convert.IsDBNull(reader["LostByLoanId"]) ? 0 : (int)reader["LostByLoanId"],
-                                CategoryName = reader["CategoryName"].ToString()
+                                LostByName = reader["LostByName"].ToString(),
+                                ResourceName = reader["ResourceName"].ToString()
                             });
                         }
                     }
@@ -284,9 +287,8 @@ namespace ITHS_DB_Lab3_Web
                             loanlist.Add(new LoanDetails()
                             {
                                 Id = (int)reader["Id"],
-                                BorrowerId = (int)reader["BorrowerId"],
-                                FirstName = reader["FirstName"].ToString(),
-                                LastName = reader["LastName"].ToString(),
+                                FullNameLoaner= reader["LoanerFullName"].ToString(),
+                                FullNameBorrower = reader["BorrowerFullName"].ToString(),
                                 StartDate = reader["StartDate"].ToString(),
                                 EndDate = reader["EndDate"].ToString(),
                                 ReturnDate = reader["ReturnDate"].ToString()

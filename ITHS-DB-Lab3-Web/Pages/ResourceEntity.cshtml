@@ -10,10 +10,10 @@
     <thead>
         <tr>
             <th scope="col">Id</th>
-            <th scope="col">Resource Id</th>
+            <th scope="col">Resource Name</th>
             <th scope="col">Entity Id</th>
             <th scope="col">Identification Number</th>
-            <th scope="col">Lost By Loan Id</th>
+            <th scope="col">Lost By</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -23,7 +23,7 @@
             {
             <tr>
                 <td>@Resource_EntityDetails.Id</td>
-                <td>@Resource_EntityDetails.CategoryName</td>
+                <td>@Resource_EntityDetails.ResourceName</td>
                 <td>@Resource_EntityDetails.EntityId</td>
                 <td>@Resource_EntityDetails.IdentificationNumber</td>
                 @if (Resource_EntityDetails.LostByLoanId == 0)
@@ -32,7 +32,7 @@
                 }
                 else
                 {
-                    <td>@Resource_EntityDetails.LostByLoanId</td>
+                    <td>@Resource_EntityDetails.LostByName</td>
                 }
                 <td>
                     <a asp-page="/DeleteResourceEntity" asp-route-resourceentityid="@Resource_EntityDetails.Id"><i class="fas fa-trash" style="color:red"></i></a>
