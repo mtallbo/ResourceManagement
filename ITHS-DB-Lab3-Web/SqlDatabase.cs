@@ -10,7 +10,7 @@ namespace ITHS_DB_Lab3_Web
     public class SqlDatabase
     {
         // ADD SQL DATABASE ADRESS HERE
-        private static string db_adress = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Release_Db_Labb3;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private static string db_adress = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=FINALRELEASE;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         
 
