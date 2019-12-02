@@ -17,6 +17,7 @@ namespace ITHS_DB_Lab3_Web.Pages.ResourceEntity
 
         public void OnGet(int resourceid)
         {
+            //ResourceEntityLostAndLoanData = SqlDatabase.GetAllResourceEntitiesByResource(resourceid);
             ResourceEntityLostAndLoanData = SqlDatabase.GetLostOrLoanedResourceEntities(resourceid);
             ResourceData = SqlDatabase.FindResource(resourceid);
         }

@@ -10,7 +10,7 @@ namespace ITHS_DB_Lab3_Web
     public class SqlDatabase
     {
      
-        private static string db_adress = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ITHS-DB-Labb3;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private static string db_adress = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Release_Db_Labb3;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         
 
@@ -367,9 +367,9 @@ namespace ITHS_DB_Lab3_Web
         }
 
         //Combos
-        public static IEnumerable<Resource_Entity> GetAllResourceEntitiesByResource(int ResourceId)
+        public static IEnumerable<Resource_EntityDetails> GetAllResourceEntitiesByResource(int ResourceId)
         {
-            List<Resource_Entity> entitylist = new List<Resource_Entity>();
+            List<Resource_EntityDetails> entitylist = new List<Resource_EntityDetails>();
             using (SqlConnection conn = new SqlConnection(db_adress))
             {
                 conn.Open();
@@ -380,7 +380,7 @@ namespace ITHS_DB_Lab3_Web
                     {
                         while (reader.Read())
                         {
-                            entitylist.Add(new Resource_Entity()
+                            entitylist.Add(new Resource_EntityDetails()
                             {
                                 Id = Convert.ToInt32(reader["Id"]),
                                 ResourceId = (int)reader["ResourceId"],

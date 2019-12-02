@@ -6,13 +6,13 @@ select
 																				WHEN LO.StartDate IS NOT NULL AND LO.ReturnDate IS NULL THEN 'Loaned'
 																				ELSE 'Available' END AS [Availability]
 from 
+	ResourceEntities RE
+left join
 	Loans LO
 inner join(
 	select MAX(id) MaxId
 	from Loans
 	group by Loans.ResourceEntityId) maxid on maxid.MaxId = LO.Id
-left join
-	ResourceEntities RE
 on
 	RE.Id = LO.ResourceEntityId
 where
