@@ -15,6 +15,27 @@ Den lånar om dessa villkor fylls
 *Exemplaret finns och har ett returvärde
 */
 begin try
+	if exists(select * from Loans where ResourceEntityId = @resourceEntityId and ReturnDate is null)
+        begin
+            --'Item not available'
+			return 0
+        end
+	if exists(select * from ResourceEntities where ResourceEntities.Id = @resourceEntityId and ResourceEntities.LostByLoanId is not null)
+		begin
+            --'Item is missing'
+			return 0
+        end
+	if not exists(select * from ResourceEntities where ResourceEntities.Id = @resourceEntityId)
+        begin
+            --'Item does not exist'
+			return 0
+        end
+	if (@loanerId = @borrowerId)
+		begin
+			--'You cannot loan from yourself'
+			return 0
+		end
+	else
 	insert into
 		[dbo].[Loans]
 		(
